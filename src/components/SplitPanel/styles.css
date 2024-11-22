@@ -1,0 +1,28 @@
+.repl-split-panel-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.repl-split-panel-dragging {
+  user-select: none;
+}
+
+.repl-split-panel-left,
+.repl-split-panel-right {
+  height: 100%;
+  overflow: auto;
+}
+
+.repl-split-panel-divider {
+  width: 4px;
+  background-color: #e0e0e0;
+  cursor: col-resize;
+  transition: background-color 0.2s;
+}
+
+.repl-split-panel-divider:hover {
+  background-color: #1890ff;
+}
