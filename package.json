@@ -19,6 +19,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build-preview": "vite build -c vite.preview.config.ts",
     "format": "biome format --write .",
     "preview": "vite preview"
   },
