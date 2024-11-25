@@ -53,8 +53,6 @@ const Preview: React.FC<Props> = ({ value }) => {
           <script type="text/babel" data-type="module">${scriptContent}</script>`,
         )
 
-      console.log("htmlContent", htmlContent)
-
       iframeDoc.write(htmlContent)
       iframeDoc.close()
     } catch (error) {
@@ -74,8 +72,6 @@ const Preview: React.FC<Props> = ({ value }) => {
   }, [])
 
   useEffect(() => {
-    console.log("value", value)
-
     executeCode()
 
     return cleanup

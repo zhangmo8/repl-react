@@ -11,8 +11,6 @@ export const ReplReact = () => {
   const [code, setCode] = useState(Hello)
 
   const handleCodeChange = (newCode: string) => {
-    console.log("qwefqwe")
-
     setCode(newCode)
   }
 
