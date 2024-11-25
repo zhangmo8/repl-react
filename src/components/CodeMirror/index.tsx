@@ -9,6 +9,7 @@ interface Props {
   value: string
   onChange?: (code: string) => void
 }
+
 const CodeMirror: FC<Props> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const editorRef = useRef<EditorView | null>(null)
