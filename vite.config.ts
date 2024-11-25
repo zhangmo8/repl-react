@@ -27,6 +27,7 @@ export default defineConfig({
     rollupOptions: {
       external: ["react", "react-dom"],
       output: {
+        dir: "build",
         chunkFileNames: "chunks/[name]-[hash].js",
         globals: {
           react: "React",
