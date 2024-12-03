@@ -18,23 +18,6 @@ const Preview: React.FC<Props> = ({ value }) => {
     }
 
     try {
-      const scriptContent = `
-      import React from 'react';
-      import { createRoot } from 'react-dom/client';
-
-        try {
-          const root = document.getElementById('root');
-          const container = createRoot(root);
-          container.render(React.createElement(${value}));
-        } catch (error) {
-          console.error(
-            "React-Repl: Error in executeCode:",
-            error
-          );
-          root.innerHTML = '<pre style="color: red;">' + error + '</pre>';
-        }
-      `
-
       const iframeDoc = iframeRef.current.contentDocument
       if (!iframeDoc) {
         console.warn(
@@ -50,7 +33,7 @@ const Preview: React.FC<Props> = ({ value }) => {
         .replace(
           "<!--PREVIEW-OPTIONS-PLACEHOLDER-HTML-->",
           `<div id="root"></div>
-          <script type="text/babel" data-type="module">${scriptContent}</script>`,
+          <script type="text/babel" data-type="module">${value}</script>`,
         )
 
       iframeDoc.write(htmlContent)
