@@ -1,6 +1,9 @@
+import { autocompletion } from "@codemirror/autocomplete"
 import { javascript } from "@codemirror/lang-javascript"
 import { EditorView, basicSetup } from "codemirror"
 import { type FC, useLayoutEffect, useRef } from "react"
+
+import { replJSXCompletion } from "./autocompletion"
 import { vitesse } from "./theme"
 
 import "./styles.css"
@@ -19,6 +22,9 @@ const CodeMirror: FC<Props> = (props) => {
     vitesse,
     javascript({
       jsx: true,
+    }),
+    autocompletion({
+      override: [replJSXCompletion],
     }),
   ]
 
