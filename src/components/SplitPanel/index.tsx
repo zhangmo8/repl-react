@@ -1,5 +1,5 @@
 import type React from "react"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import "./styles.css"
 
 interface SplitPaneProps {
@@ -31,7 +31,7 @@ const SplitPane: React.FC<SplitPaneProps> = ({
   )
 
   const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
+    (e: React.MouseEvent) => {
       if (!isDragging || !containerRef.current) return
 
       const containerWidth = containerRef.current.offsetWidth
@@ -46,7 +46,9 @@ const SplitPane: React.FC<SplitPaneProps> = ({
         100 - (minSize / containerWidth) * 100,
       )
 
-      setSplitPosition(newSplit)
+      requestAnimationFrame(() => {
+        setSplitPosition(newSplit)
+      })
     },
     [isDragging, minSize],
   )
@@ -55,20 +57,14 @@ const SplitPane: React.FC<SplitPaneProps> = ({
     setIsDragging(false)
   }, [])
 
-  useEffect(() => {
-    if (isDragging) {
-      window.addEventListener("mousemove", handleMouseMove)
-      window.addEventListener("mouseup", handleMouseUp)
-    }
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-      window.removeEventListener("mouseup", handleMouseUp)
-    }
-  }, [isDragging, handleMouseMove, handleMouseUp])
-
   return (
-    <div className="repl-split-panel-container" ref={containerRef}>
+    <div
+      className={`repl-split-panel-container ${isDragging && "dragging"}`}
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
       <div
         className={`repl-split-panel-left ${isDragging && "repl-split-panel-dragging"}`}
         style={{ width: `${splitPosition}%` }}

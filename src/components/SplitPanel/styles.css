@@ -6,23 +6,33 @@
   overflow: hidden;
 }
 
+.repl-split-panel-container.dragging {
+  cursor: ew-resize;
+}
+
 .repl-split-panel-dragging {
   user-select: none;
+  pointer-events: none;
 }
 
 .repl-split-panel-left,
 .repl-split-panel-right {
   height: 100%;
   overflow: auto;
+  min-width: 0;
 }
 
 .repl-split-panel-divider {
   width: 4px;
   background-color: #e0e0e0;
-  cursor: col-resize;
+  cursor: ew-resize;
   transition: background-color 0.2s;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
 }
 
-.repl-split-panel-divider:hover {
+.repl-split-panel-divider:hover,
+.repl-split-panel-divider:active {
   background-color: #1890ff;
 }

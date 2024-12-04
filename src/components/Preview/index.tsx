@@ -11,6 +11,10 @@ interface Props {
 const Preview: React.FC<Props> = ({ value }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
+  function reload() {
+    iframeRef.current?.contentWindow?.location.reload()
+  }
+
   function executeCode() {
     if (!iframeRef.current) {
       console.warn("React-Repl: iframe element is not yet available")
@@ -54,6 +58,7 @@ const Preview: React.FC<Props> = ({ value }) => {
     }
   }, [])
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     executeCode()
 
