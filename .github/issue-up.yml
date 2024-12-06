@@ -1,0 +1,5 @@
+# https://github.com/antfu/issue-up
+upstream:
+  nitro: unjs/nitro
+  unimport: unjs/unimport
+  untyped: unjs/untyped
