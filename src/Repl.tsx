@@ -15,11 +15,11 @@ export const ReplReact = () => {
   }
 
   return (
-    <div className="react-repl">
+    <main className="react-repl">
       <SplitPane
         left={<CodeMirror value={code} onChange={handleCodeChange} />}
         right={<Preview value={code} />}
       />
-    </div>
+    </main>
   )
 }

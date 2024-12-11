@@ -16,6 +16,14 @@ export default defineConfig({
       "@": resolve(__dirname, "src"),
     },
   },
+  optimizeDeps: {
+    exclude: ["@swc/wasm-web"],
+  },
+  server: {
+    headers: {
+      "*.wasm": ["application/wasm"],
+    },
+  },
   build: {
     target: "esnext",
     lib: {

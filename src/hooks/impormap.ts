@@ -6,5 +6,6 @@ export const useImportMap = () => {
       "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?dev",
       antd: "https://esm.sh/antd@5.22.2?external=react",
     },
+    scopes: {},
   }
 }

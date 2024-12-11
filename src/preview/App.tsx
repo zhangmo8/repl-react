@@ -1,4 +1,4 @@
-import { ReplReact } from "./Repl"
+import { ReplReact } from "../Repl"
 
 function App() {
   return <ReplReact />
