@@ -69,12 +69,14 @@ const Preview: React.FC<Props> = ({ value }) => {
   }, [value])
 
   return (
-    <iframe
-      ref={iframeRef}
-      title="preview"
-      style={{ width: "100%", height: "100%", border: "none" }}
-      sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
-    />
+    <div className="react-repl-iframe-container">
+      <iframe
+        ref={iframeRef}
+        title="preview"
+        style={{ width: "100%", height: "100%", border: "none" }}
+        sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+      />
+    </div>
   )
 }
 
