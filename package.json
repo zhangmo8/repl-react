@@ -1,6 +1,5 @@
 {
   "name": "@zhangmo8/repl-react",
-  "private": false,
   "version": "0.0.1",
   "type": "module",
   "files": [
@@ -9,6 +8,9 @@
   "main": "./dist/your-component-library.umd.js",
   "module": "./dist/your-component-library.es.js",
   "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "import": "./dist/your-component-library.es.js",
