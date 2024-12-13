@@ -9,7 +9,7 @@
   align-items: center;
   gap: 4px;
 
-  border-bottom: 1px solid var(--repl-border-color);
+  border-bottom: 1px solid var(--repl-divider-color);
   padding: 5px;
 }
 
