@@ -1,1 +1,2 @@
-export * from './Repl'
+export * from "./Repl"
+export { useReplStore } from "./store"

@@ -1,10 +1,9 @@
-import { ReplContext } from "@/store"
-import { useContext } from "react"
+import { useReplStore } from "@/store"
 
 import CodeMirror from "./CodeMirror"
 
 const EditorContainer = () => {
-  const { state, onChangeCode } = useContext(ReplContext)
+  const { state, onChangeCode } = useReplStore()
   const { code = "" } = state
 
   return (
