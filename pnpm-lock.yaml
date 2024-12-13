@@ -33,6 +33,9 @@ importers:
       '@lezer/highlight':
         specifier: ^1.2.1
         version: 1.2.1
+      '@swc/wasm-typescript-esm':
+        specifier: ^1.10.1
+        version: 1.10.1
       '@swc/wasm-web':
         specifier: ^1.10.1
         version: 1.10.1
@@ -604,6 +607,9 @@ packages:
 
   '@rushstack/ts-command-line@4.23.0':
     resolution: {integrity: sha512-jYREBtsxduPV6ptNq8jOKp9+yx0ld1Tb/Tkdnlj8gTjazl1sF3DwX2VbluyYrNd0meWIL0bNeer7WDf5tKFjaQ==}
+
+  '@swc/wasm-typescript-esm@1.10.1':
+    resolution: {integrity: sha512-zkqqwhPC8d2adBp5HYIKe3lLwWElkyrHJWwfAVZfPb40W6tUwCKiMZCmHYHf3/Pk+lRLwRL05u/RAb3IYPivpA==}
 
   '@swc/wasm-web@1.10.1':
     resolution: {integrity: sha512-b3SfbFaiOovRy+TcEIu4hk1XAThTm8HKz4a4lonZcj7Hjxh3axFPDx0HjeLO/OM4LzsJwyAyTN4mGG594ZcvaA==}
@@ -1957,6 +1963,8 @@ snapshots:
       string-argv: 0.3.2
     transitivePeerDependencies:
       - '@types/node'
+
+  '@swc/wasm-typescript-esm@1.10.1': {}
 
   '@swc/wasm-web@1.10.1': {}
 

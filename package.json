@@ -34,6 +34,7 @@
     "@codemirror/language": "^6.10.3",
     "@codemirror/state": "^6.4.1",
     "@lezer/highlight": "^1.2.1",
+    "@swc/wasm-typescript-esm": "^1.10.1",
     "@swc/wasm-web": "^1.10.1",
     "@types/codemirror": "^5.60.15",
     "@types/node": "^22.9.1",
