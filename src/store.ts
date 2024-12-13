@@ -77,9 +77,11 @@ export const DEFAULT_REPL_STATE: ReplState = {
 export const ReplContext = createContext<{
   state: ReplState
   setState: Dispatch<ReplState>
+  onChangeCode: (code: string) => void
 }>({
   state: DEFAULT_REPL_STATE,
   setState: () => {},
+  onChangeCode: () => {},
 })
 
 export const useReplStore = () => {

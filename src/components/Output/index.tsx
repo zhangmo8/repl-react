@@ -40,7 +40,7 @@ const Output = () => {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    transformOutput(code)
+    if (code) transformOutput(code)
   }, [code])
 
   return (
