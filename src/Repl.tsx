@@ -1,25 +1,20 @@
-import CodeMirror from "./components/CodeMirror"
-import Preview from "./components/Preview"
+import type { FC } from "react"
+
+import EditorContainer from "./components/Editor"
+import Output from "./components/Output"
 import SplitPane from "./components/SplitPanel"
 
-import Hello from "./template/hello?raw"
+import { ReplProvider } from "./ReplProvider"
+import type { ReplState } from "./store"
 
 import "./repl.css"
-import { useState } from "react"
 
-export const ReplReact = () => {
-  const [code, setCode] = useState(Hello)
-
-  const handleCodeChange = (newCode: string) => {
-    setCode(newCode)
-  }
-
+export const Repl: FC<ReplState> = (props) => {
   return (
-    <main className="react-repl">
-      <SplitPane
-        left={<CodeMirror value={code} onChange={handleCodeChange} />}
-        right={<Preview value={code} />}
-      />
-    </main>
+    <ReplProvider config={props}>
+      <main className="react-repl">
+        <SplitPane left={<EditorContainer />} right={<Output />} />
+      </main>
+    </ReplProvider>
   )
 }

@@ -1,0 +1,53 @@
+.repl-output-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.repl-output-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  border-bottom: 1px solid var(--repl-border-color);
+  padding: 5px;
+}
+
+.repl-tab-button {
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  position: relative;
+  color: var(--repl-text-secondary);
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.repl-tab-button:hover,
+.repl-tab-button.active {
+  background-color: var(--repl-primary-hover);
+  color: var(--repl-bg-primary);
+}
+
+.repl-tab-button.active {
+  color: var(--repl-bg-primary);
+  background-color: var(--repl-primary-color);
+}
+
+.repl-output-content {
+  flex: 1;
+  overflow: auto;
+}
+
+.repl-output-panel {
+  height: 100%;
+  overflow: auto;
+  display: none;
+}
+
+.repl-output-panel-active {
+  display: block;
+}

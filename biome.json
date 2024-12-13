@@ -24,7 +24,8 @@
     "ignore": [
       "node_modules/**",
       "dist/**",
-      ".vscode/**"
+      ".vscode/**",
+      "src/template"
     ]
   },
   "formatter": {

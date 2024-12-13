@@ -24,7 +24,7 @@
 
 .repl-split-panel-divider {
   width: 4px;
-  background-color: #e0e0e0;
+  background-color: var(--repl-divider-color);
   cursor: ew-resize;
   transition: background-color 0.2s;
   flex-shrink: 0;
@@ -34,5 +34,5 @@
 
 .repl-split-panel-divider:hover,
 .repl-split-panel-divider:active {
-  background-color: #1890ff;
+  background-color: var(--repl-primary-color);
 }

@@ -23,6 +23,23 @@ grammarly-desktop-integration {
 }
 
 :root {
+  /* Base Colors */
+  --repl-primary-color: #1890ff;
+  --repl-primary-hover: #40a9ff;
+
+  /* UI Colors */
+  --repl-border-color: #333;
+  --repl-divider-color: #e0e0e0;
+
+  /* Text Colors */
+  --repl-text-primary: #393a34;
+  --repl-text-secondary: #858585;
+
+  /* Background Colors */
+  --repl-bg-primary: #fdfdfd;
+  --repl-bg-secondary: #f5f5f5;
+  --repl-bg-hover: rgba(0, 0, 0, 0.04);
+
   --cm-font-family: "Fira Code", monospace;
   --cm-foreground: #393a3480;
   --cm-background: #fdfdfd;

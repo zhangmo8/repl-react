@@ -1,7 +1,7 @@
-import { ReplReact } from "../Repl"
+import { Repl } from "../Repl"
 
 function App() {
-  return <ReplReact />
+  return <Repl />
 }
 
 export default App

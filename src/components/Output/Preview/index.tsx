@@ -7,10 +7,11 @@ import logger from "@/utils/logger"
 import basicTemplate from "./basic.html?raw"
 
 interface Props {
-  value: string
+  className?: string
+  code: string
 }
 
-const Preview: React.FC<Props> = ({ value }) => {
+const Preview: React.FC<Props> = ({ code, className }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   // function reload() {
@@ -24,7 +25,7 @@ const Preview: React.FC<Props> = ({ value }) => {
     }
 
     try {
-      const { transformedCode } = await transformCode(value)
+      const { transformedCode } = await transformCode(code)
       const iframeDoc = iframeRef.current.contentDocument
       if (!iframeDoc) {
         logger.warn(
@@ -66,10 +67,10 @@ const Preview: React.FC<Props> = ({ value }) => {
     executeCode()
 
     return cleanup
-  }, [value])
+  }, [code])
 
   return (
-    <div className="react-repl-iframe-container">
+    <div className={`react-repl-iframe-container ${className}`}>
       <iframe
         ref={iframeRef}
         title="preview"

@@ -1,4 +1,4 @@
-import { autocompletion } from "@codemirror/autocomplete"
+import { type CompletionSource, autocompletion } from "@codemirror/autocomplete"
 import { javascript } from "@codemirror/lang-javascript"
 import { EditorView, basicSetup } from "codemirror"
 import { type FC, useLayoutEffect, useRef } from "react"
@@ -8,8 +8,12 @@ import { vitesse } from "./theme"
 
 import "./styles.css"
 
+import type { Extension } from "@codemirror/state"
+
 interface Props {
-  value: string
+  code: string
+  autoComplete?: CompletionSource[]
+  cmExtensions?: Extension[]
   onChange?: (code: string) => void
 }
 
@@ -24,15 +28,16 @@ const CodeMirror: FC<Props> = (props) => {
       jsx: true,
     }),
     autocompletion({
-      override: [replJSXCompletion],
+      override: [replJSXCompletion, ...(props.autoComplete || [])],
     }),
+    ...(props.cmExtensions || []),
   ]
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useLayoutEffect(() => {
     if (containerRef.current && !editorRef.current) {
       editorRef.current = new EditorView({
-        doc: props.value,
+        doc: props.code,
         extensions,
         parent: containerRef.current,
         dispatch(tr) {
