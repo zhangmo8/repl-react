@@ -22,7 +22,15 @@ export default defineConfig({
 ```
 
 ```javascript
-import { Repl } from '@zhangmo8/repl-react'
+import { Repl, useReplStore } from '@zhangmo8/repl-react'
 
-<Repl />
+const Demo = () => {
+  const { state, setState } = useReplStore()
+  return (
+    <div>
+      <Repl />
+      <p>Code: {state.code}</p>
+    </div>
+  )
+}
 ```
