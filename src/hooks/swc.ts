@@ -93,6 +93,12 @@ const SWC_PREVIEW_CONFIG: Options = {
 
 let swcInstance: typeof swc | null = null
 
+export interface OutputCode {
+  transformedCode: string
+  compiledCode: string
+  ast: string
+}
+
 export async function initSwc() {
   if (!swcInstance) {
     try {
@@ -109,23 +115,24 @@ export async function initSwc() {
   return swcInstance
 }
 
-export async function transformCode(
-  code: string,
-): Promise<{ transformedCode: string; compiledCode: string }> {
+export async function transformCode(code: string): Promise<OutputCode> {
   try {
     const instance = await initSwc()
     if (!instance) {
       throw new Error("SWC instance not initialized")
     }
 
-    const res = await Promise.all([
-      instance.transform(code, SWC_PREVIEW_CONFIG),
-      instance.transform(code, SWC_COMPILER_CONFIG),
-    ])
+    const transformedCode = instance.transformSync(
+      code,
+      SWC_PREVIEW_CONFIG,
+    ).code
+    const compiledCode = instance.transformSync(code, SWC_COMPILER_CONFIG).code
+    const ast = JSON.stringify(await parse(code), null, 2)
 
     return {
-      transformedCode: res[0].code,
-      compiledCode: res[1].code,
+      transformedCode,
+      compiledCode,
+      ast,
     }
   } catch (error) {
     logger.error("Transform error:", error)

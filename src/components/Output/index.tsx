@@ -1,7 +1,10 @@
-import { useContext, useMemo, useState } from "react"
-import Preview from "./Preview"
+import { useCallback, useContext, useEffect, useMemo, useState } from "react"
 
+import CodeMirror from "@/components/Editor/CodeMirror"
+import { type OutputCode, transformCode } from "@/hooks/swc"
 import { ReplContext } from "@/store"
+
+import Preview from "./Preview"
 import "./styles.css"
 
 const outputTabs = [
@@ -12,9 +15,15 @@ const outputTabs = [
 
 const Output = () => {
   const { state } = useContext(ReplContext)
-  const { defaultCode = "", code = "", showAST, showCompile } = state
+  const { code = "", showAST, showCompile } = state
   const [activeTab, setActiveTab] =
     useState<(typeof outputTabs)[number]["value"]>("preview")
+
+  const [outputCode, setOutputCode] = useState<OutputCode>({
+    transformedCode: "",
+    compiledCode: "",
+    ast: "",
+  })
 
   const tabs = useMemo(() => {
     return outputTabs.filter((tab) => {
@@ -23,6 +32,16 @@ const Output = () => {
       return true
     })
   }, [showAST, showCompile])
+
+  const transformOutput = useCallback(async (code: string) => {
+    const _code = await transformCode(code)
+    setOutputCode(_code)
+  }, [])
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    transformOutput(code)
+  }, [code])
 
   return (
     <div className="repl-output-container">
@@ -40,18 +59,20 @@ const Output = () => {
       </div>
       <div className="repl-output-content">
         <Preview
-          code={code || defaultCode}
+          code={outputCode?.transformedCode}
           className={`repl-output-panel ${activeTab === "preview" && "repl-output-panel-active"}`}
         />
         <div
-          className={`repl-output-panel ${activeTab === "compile" && "repl-output-panel-active"}`}
+          className={`repl-output-panel ${activeTab !== "preview" && "repl-output-panel-active"}`}
         >
-          Compile output coming soon
-        </div>
-        <div
-          className={`repl-output-panel ${activeTab === "ast" && "repl-output-panel-active"}`}
-        >
-          AST output coming soon
+          <CodeMirror
+            readonly
+            code={
+              activeTab === "compile"
+                ? outputCode?.compiledCode
+                : outputCode?.ast
+            }
+          />
         </div>
       </div>
     </div>

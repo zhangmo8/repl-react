@@ -2,7 +2,6 @@ import type React from "react"
 import { useCallback, useEffect, useRef } from "react"
 
 import { useImportMap } from "@/hooks/impormap"
-import { transformCode } from "@/hooks/swc"
 import logger from "@/utils/logger"
 import basicTemplate from "./basic.html?raw"
 
@@ -25,7 +24,6 @@ const Preview: React.FC<Props> = ({ code, className }) => {
     }
 
     try {
-      const { transformedCode } = await transformCode(code)
       const iframeDoc = iframeRef.current.contentDocument
       if (!iframeDoc) {
         logger.warn(
@@ -41,7 +39,7 @@ const Preview: React.FC<Props> = ({ code, className }) => {
         .replace(
           "<!--PREVIEW-OPTIONS-PLACEHOLDER-HTML-->",
           `<div id="root"></div>
-          <script type="module">${transformedCode}</script>`,
+          <script type="module">${code}</script>`,
         )
 
       iframeDoc.write(htmlContent)

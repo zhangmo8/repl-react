@@ -1,20 +1,20 @@
 import { type CompletionSource, autocompletion } from "@codemirror/autocomplete"
 import { javascript } from "@codemirror/lang-javascript"
+import { EditorState, type Extension } from "@codemirror/state"
 import { EditorView, basicSetup } from "codemirror"
-import { type FC, useLayoutEffect, useRef } from "react"
+import { type FC, useEffect, useLayoutEffect, useRef } from "react"
 
 import { replJSXCompletion } from "./autocompletion"
 import { vitesse } from "./theme"
 
 import "./styles.css"
 
-import type { Extension } from "@codemirror/state"
-
 interface Props {
   code: string
   autoComplete?: CompletionSource[]
   cmExtensions?: Extension[]
   onChange?: (code: string) => void
+  readonly?: boolean
 }
 
 const CodeMirror: FC<Props> = (props) => {
@@ -30,6 +30,8 @@ const CodeMirror: FC<Props> = (props) => {
     autocompletion({
       override: [replJSXCompletion, ...(props.autoComplete || [])],
     }),
+    EditorView.editable.of(!props.readonly || true),
+    EditorState.readOnly.of(props.readonly || false),
     ...(props.cmExtensions || []),
   ]
 
@@ -49,6 +51,19 @@ const CodeMirror: FC<Props> = (props) => {
       })
     }
   }, [])
+
+  useEffect(() => {
+    const cur = editorRef.current?.state.doc.toString() || ""
+    if (props.code !== cur) {
+      editorRef.current?.dispatch({
+        changes: {
+          from: 0,
+          to: cur.length,
+          insert: props.code,
+        },
+      })
+    }
+  }, [props.code])
 
   return <div className="editor-container" ref={containerRef} />
 }
