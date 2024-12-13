@@ -1,32 +1,40 @@
-.react-repl {
-  height: 100%;
-  width: 100%;
-  margin: 0px;
-}
-
-#gtx-trans,
-grammarly-extension,
-deepl-inline-translate,
-grammarly-popups,
-deepl-inline-popup,
-grammarly-desktop-integration {
-  display: none !important;
-}
-
 :root {
   /* Base Colors */
-  --repl-primary-color: #1e9dbc;
-  --repl-primary-hover: #58c4dc;
+  --repl-primary-color: #ffffff;
 
   /* UI Colors */
   --repl-divider-color: #e0e0e0;
+  --repl-border-color: #e4e4e7;
+  --repl-hover: #f4f4f5;
 
   /* Text Colors */
-  --repl-text-primary: #393a34;
+  --repl-text-primary: #000;
   --repl-text-secondary: #858585;
 
   /* Background Colors */
   --repl-bg-primary: #fdfdfd;
-  --repl-bg-secondary: #f5f5f5;
-  --repl-bg-hover: rgba(0, 0, 0, 0.04);
+}
+
+.dark {
+  /* Base Colors */
+  --repl-primary-color: #09090b;
+
+  /* UI Colors */
+  --repl-divider-color: #27272a;
+  --repl-border-color: #27272a;
+  --repl-hover: #09090b;
+
+  /* Text Colors */
+  --repl-text-primary: #fff;
+  --repl-text-secondary: #858585;
+
+  /* Background Colors */
+  --repl-bg-primary: #09090b;
+}
+
+.react-repl {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  background-color: var(--repl-bg-primary);
 }

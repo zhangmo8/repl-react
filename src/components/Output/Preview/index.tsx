@@ -5,6 +5,8 @@ import { useImportMap } from "@/hooks/impormap"
 import logger from "@/utils/logger"
 import basicTemplate from "./basic.html?raw"
 
+import "./styles.css"
+
 interface Props {
   className?: string
   code: string
@@ -72,7 +74,6 @@ const Preview: React.FC<Props> = ({ code, className }) => {
       <iframe
         ref={iframeRef}
         title="preview"
-        style={{ width: "100%", height: "100%", border: "none" }}
         sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
       />
     </div>
