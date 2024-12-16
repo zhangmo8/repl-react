@@ -5,6 +5,11 @@ import { type Dispatch, createContext, useContext } from "react"
 
 export interface ReplState {
   /**
+   * Theme
+   * @default "dark"
+   */
+  theme?: string
+  /**
    * The code displayed when it is passed in as a prop
    */
   defaultCode?: string

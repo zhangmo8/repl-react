@@ -1,6 +1,6 @@
 import { type FC, type PropsWithChildren, useEffect, useState } from "react"
 import { DEFAULT_REPL_STATE, ReplContext, type ReplState } from "./store"
-import { deserialize, serialize } from "./utils"
+import { debounce, deserialize, serialize } from "./utils"
 
 interface Props extends PropsWithChildren {
   config?: ReplState
@@ -14,10 +14,10 @@ export const ReplProvider: FC<Props> = ({ children, config = {} }) => {
 
   const [state, setState] = useState<ReplState>(value)
 
-  const onChangeCode = (code: string) => {
+  const onChangeCode = debounce((code: string) => {
     setState({ ...state, code })
     history.replaceState({}, "", serialize(code))
-  }
+  }, 300)
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
