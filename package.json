@@ -1,6 +1,6 @@
 {
   "name": "@zhangmo8/repl-react",
-  "version": "0.0.1",
+  "version": "0.0.2-beta.1",
   "type": "module",
   "files": [
     "dist"
@@ -22,8 +22,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build-preview": "vite build -c vite.preview.config.ts",
-    "format": "biome format --write .",
-    "preview": "vite preview"
+    "lint": "biome lint",
+    "format": "biome format --write ./src",
+    "preview": "vite preview",
+    "prepublishOnly": "nr sync-docs && nr build",
+    "release": "nr format && bumpp -r"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -43,6 +46,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
+    "bumpp": "^9.9.1",
     "codemirror": "^6.0.1",
     "fflate": "^0.8.2",
     "globals": "^15.11.0",
