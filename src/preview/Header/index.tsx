@@ -1,12 +1,13 @@
 import type { Dispatch } from "react"
 
+import Github from "../icons/github"
+import Logo from "../icons/logo"
 import Moon from "../icons/moon"
 import Sun from "../icons/sun"
 
 import Button from "../Button"
 
 import "./styles.css"
-import Github from "../icons/github"
 
 const Header = ({
   theme,
@@ -17,7 +18,12 @@ const Header = ({
 }) => {
   return (
     <header className="playground-header">
-      <h3>React Playground</h3>
+      <h3 className="playground-header-title">
+        <div className="playground-header-logo">
+          <Logo />
+        </div>
+        React Playground
+      </h3>
 
       <div className="playground-header-actions">
         <Button

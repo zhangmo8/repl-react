@@ -10,6 +10,17 @@
   border-bottom: 1px solid var(--repl-divider-color);
 }
 
+.playground-header .playground-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.playground-header .playground-header-logo {
+  width: 25px;
+  height: 25px;
+}
+
 .playground-header .playground-header-actions {
   display: flex;
   gap: 10px;
