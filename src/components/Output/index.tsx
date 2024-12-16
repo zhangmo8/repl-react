@@ -60,10 +60,10 @@ const Output = () => {
       <div className="repl-output-content">
         <Preview
           code={outputCode?.transformedCode}
-          className={`repl-output-panel ${activeTab === "preview" && "repl-output-panel-active"}`}
+          className={`repl-output-panel${activeTab === "preview" ? " repl-output-panel-active" : ""}`}
         />
         <div
-          className={`repl-output-panel ${activeTab !== "preview" && "repl-output-panel-active"}`}
+          className={`repl-output-panel${activeTab !== "preview" ? " repl-output-panel-active" : ""}`}
         >
           <CodeMirror
             readonly
