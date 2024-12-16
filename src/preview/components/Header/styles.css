@@ -1,0 +1,11 @@
+.repl-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0px 20px;
+
+  color: var(--repl-text-primary);
+  background-color: var(--repl-bg-primary);
+  border-bottom: 1px solid var(--repl-divider-color);
+}
