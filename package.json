@@ -6,6 +6,11 @@
   "files": [
     "build"
   ],
+  "author": {
+    "name": "ZhangMo8<wegi866@gmail.com>",
+    "email": "wegi866@gmail.com",
+    "url": "https://github.com/zhangmo8"
+  },
   "main": "./build/repl-react.umd.js",
   "module": "./build/repl-react.es.js",
   "types": "./build/index.d.ts",
