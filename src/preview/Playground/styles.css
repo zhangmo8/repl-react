@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.react-repl {
+  flex: 1;
+  height: 100%;
+}

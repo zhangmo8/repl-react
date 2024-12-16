@@ -45,7 +45,7 @@
 
 .repl-output-panel {
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   display: none;
 }
 
