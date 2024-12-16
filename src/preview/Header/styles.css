@@ -1,4 +1,4 @@
-.repl-header {
+.playground-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,4 +8,9 @@
   color: var(--repl-text-primary);
   background-color: var(--repl-bg-primary);
   border-bottom: 1px solid var(--repl-divider-color);
+}
+
+.playground-header .playground-header-actions {
+  display: flex;
+  gap: 10px;
 }

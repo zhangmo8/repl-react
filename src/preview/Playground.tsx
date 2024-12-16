@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Repl } from "../Repl"
 
-import Header from "./components/Header"
+import Header from "./Header"
 
 function Playground() {
   const [theme, setTheme] = useState<"light" | "dark">("dark")

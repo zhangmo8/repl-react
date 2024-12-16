@@ -1,0 +1,22 @@
+.playground-button {
+  background-color: transparent;
+  color: var(--repl-text-secondary);
+
+  font-weight: bold;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  padding: 5px;
+
+  transition: all 0.2s ease;
+
+  cursor: pointer;
+  outline: none;
+  border: none;
+  position: relative;
+}
+
+.playground-button:hover {
+  color: var(--repl-text-primary);
+}
+
+/* bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded */
