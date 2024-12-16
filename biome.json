@@ -21,12 +21,7 @@
         "noEmptyInterface": "off"
       }
     },
-    "ignore": [
-      "node_modules/**",
-      "dist/**",
-      ".vscode/**",
-      "src/template"
-    ]
+    "ignore": ["node_modules/**", "dist/**", ".vscode/**", "src/template"]
   },
   "formatter": {
     "enabled": true,
@@ -36,12 +31,7 @@
     "indentWidth": 2,
     "lineWidth": 80,
     "lineEnding": "lf",
-    "ignore": [
-      "node_modules/**",
-      "dist/**",
-      ".vscode/**",
-      "src/template"
-    ]
+    "ignore": ["node_modules/**", "dist/**", ".vscode/**", "src/template"]
   },
   "javascript": {
     "formatter": {

@@ -1,5 +1,6 @@
 {
   "name": "@zhangmo8/repl-react",
+  "description": "Online React application",
   "version": "0.0.2-beta.1",
   "type": "module",
   "files": [
@@ -25,7 +26,6 @@
     "lint": "biome lint",
     "format": "biome format --write ./src",
     "preview": "vite preview",
-    "prepublishOnly": "nr sync-docs && nr build",
     "release": "nr format && bumpp -r"
   },
   "dependencies": {

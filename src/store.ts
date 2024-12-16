@@ -3,7 +3,7 @@ import type { CompletionSource } from "@codemirror/autocomplete"
 import type { Extension } from "@codemirror/state"
 import { type Dispatch, createContext, useContext } from "react"
 
-export interface ReplState {
+export interface ReplProps {
   /**
    * Theme
    * @default "light"
@@ -13,7 +13,9 @@ export interface ReplState {
    * The code displayed when it is passed in as a prop
    */
   defaultCode?: string
+}
 
+export interface ReplState extends ReplProps {
   /**
    * The code
    */

@@ -5,11 +5,11 @@ import Output from "./components/Output"
 import SplitPane from "./components/SplitPanel"
 
 import { ReplProvider } from "./ReplProvider"
-import type { ReplState } from "./store"
+import type { ReplProps } from "./store"
 
 import "./repl.css"
 
-export const Repl: FC<ReplState> = (props) => {
+export const Repl: FC<ReplProps> = (props) => {
   return (
     <ReplProvider config={props}>
       <main className="react-repl">
