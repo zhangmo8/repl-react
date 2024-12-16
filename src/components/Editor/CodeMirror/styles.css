@@ -35,7 +35,7 @@
   --cm-ttc-c-track: white;
 }
 
-html[class="dark"] {
+html[data-repl-theme="dark"] {
   --cm-scheme: dark;
   --cm-foreground: #d4cfbf80;
   --cm-tooltip-background: #121212;

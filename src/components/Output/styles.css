@@ -7,10 +7,10 @@
 .repl-output-tabs {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 10px;
 
   border-bottom: 1px solid var(--repl-divider-color);
-  padding: 5px;
+  padding: 10px;
 }
 
 .repl-tab-button {

@@ -6,9 +6,9 @@ import { type Dispatch, createContext, useContext } from "react"
 export interface ReplState {
   /**
    * Theme
-   * @default "dark"
+   * @default "light"
    */
-  theme?: string
+  theme?: "light" | "dark"
   /**
    * The code displayed when it is passed in as a prop
    */
@@ -77,6 +77,7 @@ export const DEFAULT_REPL_STATE: ReplState = {
   showAST: true,
   showImportMap: true,
   defaultCode: template,
+  theme: "light",
 }
 
 export const ReplContext = createContext<{

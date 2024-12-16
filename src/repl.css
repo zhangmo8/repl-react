@@ -15,14 +15,14 @@
   --repl-bg-primary: #fdfdfd;
 }
 
-.dark {
+html[data-repl-theme="dark"] {
   /* Base Colors */
   --repl-primary-color: #09090b;
 
   /* UI Colors */
   --repl-divider-color: #27272a;
   --repl-border-color: #27272a;
-  --repl-hover: #09090b;
+  --repl-hover: #242428;
 
   /* Text Colors */
   --repl-text-primary: #fff;

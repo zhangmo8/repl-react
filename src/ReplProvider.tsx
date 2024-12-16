@@ -2,6 +2,8 @@ import { type FC, type PropsWithChildren, useEffect, useState } from "react"
 import { DEFAULT_REPL_STATE, ReplContext, type ReplState } from "./store"
 import { debounce, deserialize, serialize } from "./utils"
 
+const THEME = "data-repl-theme"
+
 interface Props extends PropsWithChildren {
   config?: ReplState
 }
@@ -28,6 +30,24 @@ export const ReplProvider: FC<Props> = ({ children, config = {} }) => {
       setState({ ...state, code: state.defaultCode })
     }
   }, [])
+
+  useEffect(() => {
+    if (window.document.documentElement) {
+      window.document.documentElement.setAttribute(
+        THEME,
+        state.theme || "light",
+      )
+    }
+  }, [state.theme])
+
+  useEffect(() => {
+    const value: ReplState = {
+      ...state,
+      ...config,
+    }
+
+    setState(value)
+  }, [config])
 
   return (
     <ReplContext.Provider value={{ state, setState, onChangeCode }}>
