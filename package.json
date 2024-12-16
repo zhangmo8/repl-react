@@ -1,23 +1,25 @@
 {
   "name": "@zhangmo8/repl-react",
   "description": "Online React application",
-  "version": "0.0.2-beta.1",
+  "version": "0.0.2",
   "type": "module",
   "files": [
-    "dist"
+    "build"
   ],
-  "main": "./dist/your-component-library.umd.js",
-  "module": "./dist/your-component-library.es.js",
-  "types": "./dist/index.d.ts",
+  "main": "./build/repl-react.umd.js",
+  "module": "./build/repl-react.es.js",
+  "types": "./build/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "exports": {
     ".": {
-      "import": "./dist/your-component-library.es.js",
-      "require": "./dist/your-component-library.umd.js",
-      "types": "./dist/index.d.ts"
-    }
+      "types": "./build/vue-repl.es.ts",
+      "import": "./build/repl-react.es.js"
+    },
+    "./package.json": "./package.json",
+    "./style.css": "./build/index.css",
+    "./build/style.css": "./build/index.css"
   },
   "scripts": {
     "dev": "vite",
@@ -38,6 +40,7 @@
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/language": "^6.10.3",
     "@codemirror/state": "^6.4.1",
+    "@iconify/react": "^5.1.0",
     "@lezer/highlight": "^1.2.1",
     "@swc/wasm-typescript-esm": "^1.10.1",
     "@swc/wasm-web": "^1.10.1",
