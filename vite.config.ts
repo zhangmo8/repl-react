@@ -9,6 +9,7 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
+      rollupTypes: true,
     }),
   ],
   resolve: {
@@ -17,7 +18,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ["@swc/wasm-web"],
+    exclude: ["typescript", "@swc/wasm-web"],
   },
   server: {
     headers: {
@@ -25,22 +26,21 @@ export default defineConfig({
     },
   },
   build: {
+    outDir: "build",
     target: "esnext",
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
-      name: "repl-react",
-      fileName: (format) => `repl-react.${format}.js`,
+      entry: {
+        "repl-react": "./src/index.ts",
+        "codemirror-editor": "./src/components/Editor/index.tsx",
+      },
+      formats: ["es"],
+      fileName: () => "[name].js",
     },
     cssCodeSplit: true,
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: ["react", "react-dom", "codemirror", "@swc/wasm-web"],
       output: {
-        dir: "build",
         chunkFileNames: "chunks/[name]-[hash].js",
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-        },
       },
     },
   },

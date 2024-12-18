@@ -4,6 +4,7 @@ import { defineConfig } from "vite"
 
 export default defineConfig({
   base: "./",
+  publicDir: "./public-preview",
   plugins: [react()],
   resolve: {
     alias: {

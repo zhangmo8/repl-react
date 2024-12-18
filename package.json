@@ -11,20 +11,25 @@
     "email": "wegi866@gmail.com",
     "url": "https://github.com/zhangmo8"
   },
-  "main": "./build/repl-react.umd.js",
-  "module": "./build/repl-react.es.js",
-  "types": "./build/index.d.ts",
-  "publishConfig": {
-    "access": "public"
-  },
+  "main": "build/repl-react.umd.js",
+  "module": "build/repl-react.es.js",
+  "types": "build/index.d.ts",
   "exports": {
     ".": {
       "types": "./build/vue-repl.es.ts",
       "import": "./build/repl-react.es.js"
     },
+    "./codemirror-editor": {
+      "types": "./dist/codemirror-editor.d.ts",
+      "import": "./dist/codemirror-editor.js",
+      "require": null
+    },
     "./package.json": "./package.json",
     "./style.css": "./build/index.css",
     "./build/style.css": "./build/index.css"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "dev": "vite",
@@ -35,7 +40,7 @@
     "preview": "vite preview",
     "release": "nr format && bumpp -r"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -60,6 +65,8 @@
     "globals": "^15.11.0",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.11.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "vite": "^6.0.3",
     "vite-plugin-dts": "^4.3.0"
   },
