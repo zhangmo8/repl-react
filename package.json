@@ -37,7 +37,7 @@
     "build-preview": "vite build -c vite.preview.config.ts",
     "lint": "biome lint",
     "format": "biome format --write ./src",
-    "preview": "vite preview",
+    "preview": "vite preview -c vite.preview.config.ts",
     "release": "nr format && bumpp -r"
   },
   "peerDependencies": {
