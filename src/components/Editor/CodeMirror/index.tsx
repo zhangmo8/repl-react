@@ -9,7 +9,7 @@ import { vitesse } from "./theme"
 
 import "./styles.css"
 
-interface Props {
+export interface Props {
   code: string
   autoComplete?: CompletionSource[]
   cmExtensions?: Extension[]

@@ -3,14 +3,6 @@
   "description": "Online React application",
   "version": "0.0.4-beta.1",
   "type": "module",
-  "files": [
-    "build"
-  ],
-  "author": {
-    "name": "ZhangMo8<wegi866@gmail.com>",
-    "email": "wegi866@gmail.com",
-    "url": "https://github.com/zhangmo8"
-  },
   "main": "build/repl-react.js",
   "module": "build/repl-react.js",
   "types": "build/index.d.ts",
@@ -38,14 +30,6 @@
     "format": "biome format --write ./src",
     "preview": "vite preview -c vite.preview.config.ts",
     "release": "nr format && bumpp -r"
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./build/*",
-        "./*"
-      ]
-    }
   },
   "peerDependencies": {
     "react": "^18.3.1",
@@ -77,5 +61,22 @@
     "vite": "^6.0.3",
     "vite-plugin-dts": "^4.3.0"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@9.15.0",
+  "files": [
+    "build"
+  ],
+  "homepage": "https://github.com/zhangmo8/repl-react#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangmo8/repl-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zhangmo8/repl-react/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Zhangmo8<wegi866@gmail.com>",
+    "email": "wegi866@gmail.com",
+    "url": "https://github.com/zhangmo8"
+  }
 }
