@@ -12,9 +12,9 @@
     "email": "wegi866@gmail.com",
     "url": "https://github.com/zhangmo8"
   },
-  "main": "build/repl-react.js",
-  "module": "build/repl-react.js",
-  "types": "build/index.d.ts",
+  "main": "./build/repl-react.js",
+  "module": "./build/repl-react.js",
+  "types": "./build/repl-react.d.ts",
   "exports": {
     ".": {
       "types": "./build/repl-react.d.ts",
