@@ -23,7 +23,7 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite -c vite.preview.config.ts",
     "build": "tsc -b && vite build",
     "build-preview": "vite build -c vite.preview.config.ts",
     "lint": "biome lint",

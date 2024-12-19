@@ -92,6 +92,7 @@ const SWC_PREVIEW_CONFIG: Options = {
 }
 
 let swcInstance: typeof swc | null = null
+let initPromise: Promise<void> | null = null
 
 export interface OutputCode {
   transformedCode: string
@@ -99,25 +100,30 @@ export interface OutputCode {
   ast: string
 }
 
-export async function initSwc() {
-  if (!swcInstance) {
-    try {
-      if (!swcInstance) {
-        await swc.default()
+export async function initSwcModule() {
+  if (!initPromise) {
+    initPromise = (async () => {
+      try {
+        const wasmUrl = new URL('@swc/wasm-web/wasm_bg.wasm', import.meta.url)
+        await swc.default({
+          url: wasmUrl
+        })
         swcInstance = swc
         logger.log("SWC initialized successfully")
+      } catch (error) {
+        logger.error("Failed to initialize SWC:", error)
+        initPromise = null
+        throw error
       }
-    } catch (error) {
-      logger.error("Failed to initialize SWC:", error)
-      throw error
-    }
+    })()
   }
+  await initPromise
   return swcInstance
 }
 
 export async function transformCode(code: string): Promise<OutputCode> {
   try {
-    const instance = await initSwc()
+    const instance = await initSwcModule()
     if (!instance) {
       throw new Error("SWC instance not initialized")
     }
@@ -142,7 +148,7 @@ export async function transformCode(code: string): Promise<OutputCode> {
 
 export async function parse(code: string) {
   try {
-    const instance = await initSwc()
+    const instance = await initSwcModule()
     if (!instance) {
       throw new Error("SWC instance not initialized")
     }
