@@ -1,7 +1,7 @@
 {
   "name": "@zhangmo8/repl-react",
   "description": "Online React application",
-  "version": "0.0.4-beta.1",
+  "version": "0.0.4-beta.2",
   "type": "module",
   "main": "build/repl-react.js",
   "module": "build/repl-react.js",
