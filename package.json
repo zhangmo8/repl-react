@@ -1,7 +1,7 @@
 {
   "name": "@zhangmo8/repl-react",
   "description": "Online React application",
-  "version": "0.0.3",
+  "version": "0.0.4-beta.1",
   "type": "module",
   "files": [
     "build"
@@ -11,18 +11,17 @@
     "email": "wegi866@gmail.com",
     "url": "https://github.com/zhangmo8"
   },
-  "main": "build/repl-react.umd.js",
-  "module": "build/repl-react.es.js",
+  "main": "build/repl-react.js",
+  "module": "build/repl-react.js",
   "types": "build/index.d.ts",
   "exports": {
     ".": {
-      "types": "./build/vue-repl.es.ts",
-      "import": "./build/repl-react.es.js"
+      "types": "./build/repl-react.d.ts",
+      "import": "./build/repl-react.js"
     },
     "./codemirror-editor": {
-      "types": "./dist/codemirror-editor.d.ts",
-      "import": "./dist/codemirror-editor.js",
-      "require": null
+      "types": "./build/codemirror-editor.d.ts",
+      "import": "./build/codemirror-editor.js"
     },
     "./package.json": "./package.json",
     "./style.css": "./build/index.css",
@@ -39,6 +38,14 @@
     "format": "biome format --write ./src",
     "preview": "vite preview -c vite.preview.config.ts",
     "release": "nr format && bumpp -r"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./build/*",
+        "./*"
+      ]
+    }
   },
   "peerDependencies": {
     "react": "^18.3.1",
