@@ -104,9 +104,9 @@ export async function initSwcModule() {
   if (!initPromise) {
     initPromise = (async () => {
       try {
-        const wasmUrl = new URL('@swc/wasm-web/wasm_bg.wasm', import.meta.url)
+        const wasmUrl = new URL("@swc/wasm-web/wasm_bg.wasm", import.meta.url)
         await swc.default({
-          url: wasmUrl
+          url: wasmUrl,
         })
         swcInstance = swc
         logger.log("SWC initialized successfully")
