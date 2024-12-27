@@ -1,4 +1,5 @@
 import { type FC, type PropsWithChildren, useEffect, useState } from "react"
+import { useImportMap } from "./hooks/impormap"
 import {
   DEFAULT_REPL_STATE,
   ReplContext,
@@ -6,6 +7,7 @@ import {
   type ReplState,
 } from "./store"
 import { debounce, deserialize, serialize } from "./utils"
+import logger from "./utils/logger"
 
 const THEME = "data-repl-theme"
 
@@ -22,16 +24,48 @@ export const ReplProvider: FC<Props> = ({ children, config = {} }) => {
   const [state, setState] = useState<ReplState>(value)
 
   const onChangeCode = debounce((code: string) => {
-    setState({ ...state, code })
-    history.replaceState({}, "", serialize(code))
+    setState((preValue) => {
+      history.replaceState(
+        {},
+        "",
+        serialize({ root: code, importMap: preValue.builtinImportMap }),
+      )
+
+      return {
+        ...preValue,
+        code,
+      }
+    })
+  }, 300)
+
+  const onChangeImportMap = debounce((importMap: string) => {
+    setState((preValue) => {
+      history.replaceState(
+        {},
+        "",
+        serialize({ root: preValue.code, importMap }),
+      )
+
+      return {
+        ...preValue,
+        builtinImportMap: importMap,
+      }
+    })
   }, 300)
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     try {
-      const code = deserialize(location.hash)
-      setState({ ...state, code })
+      const { root: code, importMap } = deserialize(location.hash)
+
+      setState({
+        ...state,
+        code,
+        builtinImportMap: importMap || JSON.stringify(useImportMap()),
+      })
     } catch (error) {
+      logger.error("Hash deserialization error", error)
+
       setState({ ...state, code: state.defaultCode })
     }
   }, [])
@@ -46,7 +80,9 @@ export const ReplProvider: FC<Props> = ({ children, config = {} }) => {
   }, [config.theme])
 
   return (
-    <ReplContext.Provider value={{ state, setState, onChangeCode }}>
+    <ReplContext.Provider
+      value={{ state, setState, onChangeCode, onChangeImportMap }}
+    >
       {children}
     </ReplContext.Provider>
   )

@@ -24,7 +24,7 @@ export interface ReplState extends ReplProps {
   /**
    * Importmap you need to inject
    */
-  builtinImportMap?: Record<string, string>
+  builtinImportMap: string
 
   /**
    * Whether the code is loading
@@ -80,16 +80,19 @@ export const DEFAULT_REPL_STATE: ReplState = {
   showImportMap: true,
   defaultCode: template,
   theme: "light",
+  builtinImportMap: "",
 }
 
 export const ReplContext = createContext<{
   state: ReplState
   setState: Dispatch<ReplState>
   onChangeCode: (code: string) => void
+  onChangeImportMap?: (importMap: string) => void
 }>({
   state: DEFAULT_REPL_STATE,
   setState: () => {},
   onChangeCode: () => {},
+  onChangeImportMap: () => {},
 })
 
 export const useReplStore = () => {

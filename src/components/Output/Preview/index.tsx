@@ -1,7 +1,6 @@
 import type React from "react"
 import { useCallback, useEffect, useRef } from "react"
 
-import { useImportMap } from "@/hooks/impormap"
 import logger from "@/utils/logger"
 import basicTemplate from "./basic.html?raw"
 
@@ -10,9 +9,10 @@ import "./styles.css"
 interface Props {
   className?: string
   code: string
+  builtinImportMap: string
 }
 
-const Preview: React.FC<Props> = ({ code, className }) => {
+const Preview: React.FC<Props> = ({ code, className, builtinImportMap }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   // function reload() {
@@ -37,7 +37,7 @@ const Preview: React.FC<Props> = ({ code, className }) => {
       // Reset the iframe content
       iframeDoc.open()
       const htmlContent = basicTemplate
-        .replace("<!--IMPORT_MAP-->", JSON.stringify(useImportMap()))
+        .replace("<!--IMPORT_MAP-->", builtinImportMap)
         .replace(
           "<!--PREVIEW-OPTIONS-PLACEHOLDER-HTML-->",
           `<div id="root"></div>
@@ -67,7 +67,7 @@ const Preview: React.FC<Props> = ({ code, className }) => {
     executeCode()
 
     return cleanup
-  }, [code])
+  }, [code, builtinImportMap])
 
   return (
     <div className={`react-repl-iframe-container ${className}`}>

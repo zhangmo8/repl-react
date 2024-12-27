@@ -4,7 +4,7 @@ import Header from "../Header"
 import "./styles.css"
 
 function Playground() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark")
+  const [theme, setTheme] = useState<"light" | "dark">("light")
   return (
     <>
       <Header theme={theme} setTheme={setTheme} />

@@ -48,6 +48,6 @@ export function deserialize(serializedState: string) {
   return saved
 }
 
-export function serialize(code: string) {
+export function serialize(code: Record<string, any>) {
   return `#${utoa(JSON.stringify(code))}`
 }

@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 import CodeMirror from "@/components/Editor/CodeMirror"
 import { type OutputCode, transformCode } from "@/hooks/swc"
 import { useReplStore } from "@/store"
+import Tabs from "@/components/Tabs"
 
 import Preview from "./Preview"
 import "./styles.css"
@@ -15,7 +16,7 @@ const outputTabs = [
 
 const Output = () => {
   const { state } = useReplStore()
-  const { code = "", showAST, showCompile } = state
+  const { code = "", builtinImportMap, showAST, showCompile } = state
   const [activeTab, setActiveTab] =
     useState<(typeof outputTabs)[number]["value"]>("preview")
 
@@ -45,20 +46,10 @@ const Output = () => {
 
   return (
     <div className="repl-output-container">
-      <div className="repl-output-tabs">
-        {tabs.map((tab) => (
-          <button
-            type="button"
-            key={tab.value}
-            className={`repl-tab-button ${activeTab === tab.value && "active"}`}
-            onClick={() => setActiveTab(tab.value)}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
       <div className="repl-output-content">
         <Preview
+          builtinImportMap={builtinImportMap}
           code={outputCode?.transformedCode}
           className={`repl-output-panel${activeTab === "preview" ? " repl-output-panel-active" : ""}`}
         />
