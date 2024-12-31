@@ -61,12 +61,16 @@ export const ReplProvider: FC<Props> = ({ children, config = {} }) => {
       setState({
         ...state,
         code,
-        builtinImportMap: importMap || JSON.stringify(useImportMap()),
+        builtinImportMap: importMap || JSON.stringify(useImportMap(), null, 2),
       })
     } catch (error) {
       logger.error("Hash deserialization error", error)
 
-      setState({ ...state, code: state.defaultCode })
+      setState({
+        ...state,
+        code: state.defaultCode,
+        builtinImportMap: JSON.stringify(useImportMap(), null, 2),
+      })
     }
   }, [])
 

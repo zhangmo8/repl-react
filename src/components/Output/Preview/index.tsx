@@ -5,6 +5,7 @@ import logger from "@/utils/logger"
 import basicTemplate from "./basic.html?raw"
 
 import "./styles.css"
+import { useImportMap } from "@/hooks/impormap"
 
 interface Props {
   className?: string
@@ -35,9 +36,14 @@ const Preview: React.FC<Props> = ({ code, className, builtinImportMap }) => {
       }
 
       // Reset the iframe content
+      console.log("builtinImportMap", builtinImportMap)
+
       iframeDoc.open()
       const htmlContent = basicTemplate
-        .replace("<!--IMPORT_MAP-->", builtinImportMap)
+        .replace(
+          "<!--IMPORT_MAP-->",
+          builtinImportMap || JSON.stringify(useImportMap(), null, 2),
+        )
         .replace(
           "<!--PREVIEW-OPTIONS-PLACEHOLDER-HTML-->",
           `<div id="root"></div>

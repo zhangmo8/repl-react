@@ -9,4 +9,4 @@ export const useImportMap = () => {
   }
 }
 
-// antd: "https://esm.sh/antd@5.22.2?external=react",
+// "antd": "https://esm.sh/antd@5.22.2?external=react",

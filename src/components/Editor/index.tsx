@@ -45,7 +45,7 @@ const EditorContainer = () => {
       case "root":
         return state.code || ""
       case "importMap":
-        return JSON.stringify(JSON.parse(state.builtinImportMap), null, 2)
+        return state.builtinImportMap || ""
       default:
         return ""
     }
