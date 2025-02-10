@@ -15,10 +15,13 @@ interface Props {
 
 const Preview: React.FC<Props> = ({ code, className, builtinImportMap }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null)
+  const prevImportMapRef = useRef<string>("")
 
-  // function reload() {
-  //   iframeRef.current?.contentWindow?.location.reload()
-  // }
+  function reload() {
+    if (iframeRef.current?.contentWindow) {
+      iframeRef.current.contentWindow.location.reload()
+    }
+  }
 
   async function executeCode() {
     if (!iframeRef.current) {
@@ -35,14 +38,22 @@ const Preview: React.FC<Props> = ({ code, className, builtinImportMap }) => {
         return
       }
 
-      // Reset the iframe content
-      console.log("builtinImportMap", builtinImportMap)
+      // 检查 importMap 是否发生变化
+      const currentImportMap = builtinImportMap || JSON.stringify(useImportMap(), null, 2)
+      if (prevImportMapRef.current !== currentImportMap) {
+        prevImportMapRef.current = currentImportMap
+        // importMap 变化时，强制重新加载
+        reload()
+        // 等待一小段时间确保重新加载完成
+        await new Promise(resolve => setTimeout(resolve, 100))
+      }
 
+      // Reset the iframe content
       iframeDoc.open()
       const htmlContent = basicTemplate
         .replace(
-          "<!--IMPORT_MAP-->",
-          builtinImportMap || JSON.stringify(useImportMap(), null, 2),
+          "<!-- IMPORT_MAP -->",
+          currentImportMap
         )
         .replace(
           "<!--PREVIEW-OPTIONS-PLACEHOLDER-HTML-->",
@@ -68,10 +79,8 @@ const Preview: React.FC<Props> = ({ code, className, builtinImportMap }) => {
     }
   }, [])
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     executeCode()
-
     return cleanup
   }, [code, builtinImportMap])
 

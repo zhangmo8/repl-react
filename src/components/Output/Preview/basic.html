@@ -17,9 +17,9 @@
   <!-- PREVIEW-OPTIONS-HEAD-HTML -->
 
   <!-- ES Module Shims: Import maps polyfill for modules browsers without import maps support (all except Chrome 89+) -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/es-module-shims@1.5.18/dist/es-module-shims.wasm.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/es-module-shims@1.5.18/dist/es-module-shims.wasm.js"></script>
   <script type="importmap">
-    <!--IMPORT_MAP-->
+    <!-- IMPORT_MAP -->
   </script>
 </head>
 
@@ -27,6 +27,11 @@
   <script>
     // run with NODE_ENV=development
     window.process = { env: { NODE_ENV: 'development' } };
+    window.esmsInitOptions = {
+      shimMode: true,
+      mapOverrides: true,
+      enforceIntegrity: false
+    };
   </script>
   <!--PREVIEW-OPTIONS-PLACEHOLDER-HTML-->
 
