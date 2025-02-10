@@ -1,7 +1,7 @@
 {
   "name": "@zhangmo8/repl-react",
   "description": "Online React application",
-  "version": "0.0.7",
+  "version": "0.0.8-beta.1",
   "type": "module",
   "main": "build/repl-react.js",
   "module": "build/repl-react.js",
@@ -29,8 +29,8 @@
     "lint": "biome lint",
     "format": "biome format --write ./src",
     "preview": "vite preview -c vite.preview.config.ts",
-    "publish": "npm login & npm run build & npm publish",
-    "release": "nr format && bumpp -r && nr publish"
+    "pub": "npm login & npm run build & npm publish",
+    "release": "nr format && bumpp -r && nr pub"
   },
   "peerDependencies": {
     "react": "^18.3.1",
