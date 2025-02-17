@@ -130,7 +130,7 @@ export async function transformCode(code: string): Promise<OutputCode> {
 
     const transformedCode = instance.transformSync(
       code,
-      SWC_COMPILER_CONFIG,
+      SWC_PREVIEW_CONFIG,
     ).code
     const compiledCode = instance.transformSync(code, SWC_COMPILER_CONFIG).code
     const ast = JSON.stringify(await parse(code), null, 2)

@@ -38,23 +38,18 @@ const Preview: React.FC<Props> = ({ code, className, builtinImportMap }) => {
         return
       }
 
-      // 检查 importMap 是否发生变化
-      const currentImportMap = builtinImportMap || JSON.stringify(useImportMap(), null, 2)
+      const currentImportMap =
+        builtinImportMap || JSON.stringify(useImportMap(), null, 2)
       if (prevImportMapRef.current !== currentImportMap) {
         prevImportMapRef.current = currentImportMap
-        // importMap 变化时，强制重新加载
         reload()
-        // 等待一小段时间确保重新加载完成
-        await new Promise(resolve => setTimeout(resolve, 100))
+        await new Promise((resolve) => setTimeout(resolve, 100))
       }
 
       // Reset the iframe content
       iframeDoc.open()
       const htmlContent = basicTemplate
-        .replace(
-          "<!-- IMPORT_MAP -->",
-          currentImportMap
-        )
+        .replace("<!-- IMPORT_MAP -->", currentImportMap)
         .replace(
           "<!--PREVIEW-OPTIONS-PLACEHOLDER-HTML-->",
           `<div id="root"></div>
