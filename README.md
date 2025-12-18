@@ -17,18 +17,48 @@ vite v6.0.0+
 Make sure your vite version is above 6. If not, there may be wasm errors in the local environment. However, it does not affect the effect after packaging. For details, you can check [here](
 https://github.com/vitejs/vite/issues/8427).
 
-## Basic Usage
+## Usage
 
-```javascript
-import { Repl, useReplStore } from '@zhangmo8/repl-react'
+### 1. Wrap `<Repl />` with `ReplProvider` (recommended)
 
-const Demo = () => {
+```tsx
+import {
+  Repl,
+  ReplProvider,
+  useReplStore,
+} from "@zhangmo8/repl-react"
+
+const Playground = () => (
+  <ReplProvider config={{ defaultCode: "import React from 'react'" }}>
+    <DemoControl />
+    <Repl />
+  </ReplProvider>
+)
+
+const DemoControl = () => {
   const { state, setState } = useReplStore()
   return (
     <div>
-      <Repl />
-      <p>Code: {state.code}</p>
+      <button onClick={() => setState({ ...state, showAST: !state.showAST })}>
+        Toggle AST panel
+      </button>
     </div>
   )
 }
 ```
+
+`ReplProvider` exposes the playground context, so any sibling or ancestor can safely call `useReplStore` to change visibility, code, etc. Use the `config` prop to bootstrap the REPL.
+
+### 2. Use `<Repl autoProvider />` for quick demos
+
+```tsx
+import { Repl } from "@zhangmo8/repl-react"
+
+const App = () => <Repl autoProvider theme="dark" />
+```
+
+The `autoProvider` flag defaults to `false`. When enabled, `<Repl>` renders its own `ReplProvider` internally so you can drop it straight into a page. **Warning:** because the provider is encapsulated, you cannot call `useReplStore` from outside and must rely on prop/config-driven inputs instead. If you need shared control, stick with an external `ReplProvider`.
+
+### tips
+
+If `<Repl>` is rendered without either `ReplProvider` or `autoProvider`, it throws immediately with an error explaining a provider is required. This guard prevents silent `undefined` context issues.

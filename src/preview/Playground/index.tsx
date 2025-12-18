@@ -8,7 +8,7 @@ function Playground() {
   return (
     <>
       <Header theme={theme} setTheme={setTheme} />
-      <Repl theme={theme} />
+      <Repl autoProvider theme={theme} />
     </>
   )
 }

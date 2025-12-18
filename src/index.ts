@@ -1,4 +1,5 @@
 export * from "./Repl"
+export * from "./ReplProvider"
 export { useReplStore } from "./store"
 export type { ReplState, ReplProps } from "./store"
 export { useImportMap } from "./hooks/impormap"
