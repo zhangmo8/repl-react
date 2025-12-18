@@ -10,7 +10,11 @@ interface Options {
   builtinImportMap: string
 }
 
-export const usePreviewRenderer = ({ iframeRef, code, builtinImportMap }: Options) => {
+export const usePreviewRenderer = ({
+  iframeRef,
+  code,
+  builtinImportMap,
+}: Options) => {
   const prevImportMapRef = useRef("")
   const [previewError, setPreviewError] = useState<string | null>(null)
 

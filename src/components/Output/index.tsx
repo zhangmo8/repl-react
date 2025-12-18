@@ -42,7 +42,9 @@ const Output = () => {
       setTransformError(null)
     } catch (error) {
       const message =
-        error instanceof Error ? `${error.name}: ${error.message}` : String(error)
+        error instanceof Error
+          ? `${error.name}: ${error.message}`
+          : String(error)
       setTransformError(message)
       setOutputCode({
         transformedCode: "",

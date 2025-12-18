@@ -18,7 +18,11 @@ const Preview: React.FC<Props> = ({
   errorMessage,
 }) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
-  const { previewError } = usePreviewRenderer({ iframeRef, code, builtinImportMap })
+  const { previewError } = usePreviewRenderer({
+    iframeRef,
+    code,
+    builtinImportMap,
+  })
   const displayError = errorMessage || previewError
   const [errorVisible, setErrorVisible] = useState(true)
 
