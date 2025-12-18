@@ -30,7 +30,7 @@ const CodeMirror: FC<Props> = (props) => {
     autocompletion({
       override: [replJSXCompletion, ...(props.autoComplete || [])],
     }),
-    EditorView.editable.of(!props.readonly || true),
+    EditorView.editable.of(!props.readonly),
     EditorState.readOnly.of(props.readonly || false),
     ...(props.cmExtensions || []),
   ]

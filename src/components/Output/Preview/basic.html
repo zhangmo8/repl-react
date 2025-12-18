@@ -23,15 +23,46 @@
   </script>
 </head>
 
-<body>
+  <body>
+    <script>
+      // run with NODE_ENV=development
+      window.process = { env: { NODE_ENV: 'development' } };
+      window.esmsInitOptions = {
+        shimMode: true,
+        mapOverrides: true,
+        enforceIntegrity: false
+      };
+    </script>
   <script>
-    // run with NODE_ENV=development
-    window.process = { env: { NODE_ENV: 'development' } };
-    window.esmsInitOptions = {
-      shimMode: true,
-      mapOverrides: true,
-      enforceIntegrity: false
-    };
+    if (!window.__reactReplErrorBridge) {
+      window.__reactReplErrorBridge = true
+
+      const sendErrorToParent = (error) => {
+        const payload = {
+          type: 'preview-error',
+          error
+        }
+        window.parent?.postMessage(payload, '*')
+      }
+
+      window.addEventListener('error', (event) => {
+        sendErrorToParent({
+          message: event.message,
+          filename: event.filename,
+          lineno: event.lineno,
+          colno: event.colno,
+          stack: event.error?.stack ?? null
+        })
+      })
+
+      window.addEventListener('unhandledrejection', (event) => {
+        const reason = event.reason
+        sendErrorToParent({
+          message: reason?.message ?? reason,
+          stack: reason?.stack ?? null
+        })
+      })
+    }
   </script>
   <!--PREVIEW-OPTIONS-PLACEHOLDER-HTML-->
 

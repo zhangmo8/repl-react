@@ -83,17 +83,15 @@ export const DEFAULT_REPL_STATE: ReplState = {
   builtinImportMap: "",
 }
 
-export const ReplContext = createContext<{
-  state: ReplState
-  setState: Dispatch<ReplState>
-  onChangeCode: (code: string) => void
-  onChangeImportMap?: (importMap: string) => void
-}>({
-  state: DEFAULT_REPL_STATE,
-  setState: () => {},
-  onChangeCode: () => {},
-  onChangeImportMap: () => {},
-})
+export const ReplContext = createContext<
+  | {
+      state: ReplState
+      setState: Dispatch<ReplState>
+      onChangeCode: (code: string) => void
+      onChangeImportMap?: (importMap: string) => void
+    }
+  | undefined
+>(undefined)
 
 export const useReplStore = () => {
   const context = useContext(ReplContext)

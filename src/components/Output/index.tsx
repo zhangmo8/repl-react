@@ -25,6 +25,7 @@ const Output = () => {
     compiledCode: "",
     ast: "",
   })
+  const [transformError, setTransformError] = useState<string | null>(null)
 
   const tabs = useMemo(() => {
     return outputTabs.filter((tab) => {
@@ -35,8 +36,20 @@ const Output = () => {
   }, [showAST, showCompile])
 
   const transformOutput = useCallback(async (code: string) => {
-    const _code = await transformCode(code)
-    setOutputCode(_code)
+    try {
+      const _code = await transformCode(code)
+      setOutputCode(_code)
+      setTransformError(null)
+    } catch (error) {
+      const message =
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error)
+      setTransformError(message)
+      setOutputCode({
+        transformedCode: "",
+        compiledCode: "",
+        ast: "",
+      })
+    }
   }, [])
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
@@ -44,13 +57,16 @@ const Output = () => {
     if (code) transformOutput(code)
   }, [code])
 
+  const previewCode = transformError ? "" : outputCode.transformedCode
+
   return (
     <div className="repl-output-container">
       <Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
       <div className="repl-output-content">
         <Preview
           builtinImportMap={builtinImportMap}
-          code={outputCode?.transformedCode}
+          code={previewCode}
+          errorMessage={transformError || undefined}
           className={`repl-output-panel${activeTab === "preview" ? " repl-output-panel-active" : ""}`}
         />
         <div
